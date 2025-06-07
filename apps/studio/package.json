@@ -1,12 +1,24 @@
 {
   "name": "studio",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "dev": "prisma studio --schema ../../packages/database/prisma/schema.prisma --port 3005",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    "dev": "next dev --port 3005",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@repo/next-config": "workspace:*",
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "prisma": "6.8.2"
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "22.15.21",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "typescript": "^5.8.3"
   }
 }
