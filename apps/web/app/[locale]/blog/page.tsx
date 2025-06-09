@@ -1,13 +1,8 @@
-import { blog } from '@repo/cms';
-import { Feed } from '@repo/cms/components/feed';
-import { Image } from '@repo/cms/components/image';
-import { cn } from '@repo/design-system/lib/utils';
 import { getDictionary } from '@repo/internationalization';
 import type { Blog, WithContext } from '@repo/seo/json-ld';
 import { JsonLd } from '@repo/seo/json-ld';
 import { createMetadata } from '@repo/seo/metadata';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
 type BlogProps = {
   params: Promise<{
@@ -44,7 +39,7 @@ const BlogIndex = async ({ params }: BlogProps) => {
             </h4>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <Feed queries={[blog.postsQuery]}>
+            {/* <Feed queries={[blog.postsQuery]}>
               {async ([data]) => {
                 'use server';
 
@@ -87,7 +82,7 @@ const BlogIndex = async ({ params }: BlogProps) => {
                   </Link>
                 ));
               }}
-            </Feed>
+            </Feed> */}
           </div>
         </div>
       </div>

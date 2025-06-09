@@ -1,7 +1,4 @@
-import { auth } from '@repo/auth/server';
-
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 
 const title = 'Acme Inc';
 const description = 'My application.';
@@ -11,12 +8,12 @@ export const metadata: Metadata = {
   description,
 };
 
-const App = async () => {
-  const { orgId } = await auth();
+const App = () => {
+  // const { orgId } = await auth();
 
-  if (!orgId) {
-    notFound();
-  }
+  // if (!orgId) {
+  //   notFound();
+  // }
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 pt-0">

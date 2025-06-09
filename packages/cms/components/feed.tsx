@@ -1,1 +1,3 @@
-export { Pump as Feed } from 'basehub/react-pump';
+import { Pump } from 'basehub/react-pump';
+
+export const Feed = Pump;
