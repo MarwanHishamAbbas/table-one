@@ -14,7 +14,7 @@
   "dependencies": {
     "@neondatabase/serverless": "^1.0.0",
     "@t3-oss/env-nextjs": "^0.13.4",
-    "drizzle-orm": "^0.29.3",
+    "drizzle-orm": "^0.44.2",
     "postgres": "^3.4.3",
     "server-only": "^0.0.1",
     "undici": "^7.10.0",
