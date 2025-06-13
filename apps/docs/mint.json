@@ -29,6 +29,10 @@
     {
       "name": "API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "Unit Testing",
+      "url": "unit-testing"
     }
   ],
   "anchors": [
@@ -75,6 +79,10 @@
         "api-reference/endpoint/create",
         "api-reference/endpoint/delete"
       ]
+    },
+    {
+      "group": "Testing",
+      "pages": ["unit-testing"]
     }
   ],
   "footerSocials": {

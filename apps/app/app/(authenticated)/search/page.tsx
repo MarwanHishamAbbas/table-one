@@ -1,5 +1,5 @@
 import { auth } from '@repo/auth/server';
-import { database } from '@repo/database';
+import { db } from '@repo/database';
 import { notFound, redirect } from 'next/navigation';
 import { Header } from '../components/header';
 
@@ -22,12 +22,8 @@ export const generateMetadata = async ({
 
 const SearchPage = async ({ searchParams }: SearchPageProperties) => {
   const { q } = await searchParams;
-  const pages = await database.page.findMany({
-    where: {
-      name: {
-        contains: q,
-      },
-    },
+  const pages = await db.query.users.findMany({
+    where: (users, { like }) => like(users.name, `%${q}%`),
   });
   const { orgId } = await auth();
 

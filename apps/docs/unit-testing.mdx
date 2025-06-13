@@ -1,0 +1,105 @@
+---
+title: 'Unit Testing'
+description: 'Learn how to write and run unit tests in your application'
+---
+
+# Unit Testing
+
+This guide will help you understand how to write and run unit tests in your application.
+
+## Getting Started
+
+Unit testing is a software testing method where individual units of code are tested in isolation. In our application, we use Jest as our testing framework.
+
+## Writing Tests
+
+Here's a basic example of how to write a test:
+
+```typescript
+describe('User Service', () => {
+  it('should create a new user', async () => {
+    const user = await createUser({
+      name: 'John Doe',
+      email: 'john@example.com'
+    });
+    
+    expect(user.name).toBe('John Doe');
+    expect(user.email).toBe('john@example.com');
+  });
+});
+```
+
+## Running Tests
+
+To run your tests, use the following command:
+
+```bash
+pnpm test
+```
+
+## Best Practices
+
+1. **Test Isolation**: Each test should be independent and not rely on the state from other tests.
+2. **Descriptive Names**: Use clear and descriptive names for your test cases.
+3. **AAA Pattern**: Structure your tests using Arrange-Act-Assert pattern.
+4. **Mock External Dependencies**: Use mocks for external services and dependencies.
+
+## Common Testing Patterns
+
+### Mocking Database Calls
+
+```typescript
+import { db } from '@repo/database';
+
+jest.mock('@repo/database', () => ({
+  db: {
+    users: {
+      findMany: jest.fn()
+    }
+  }
+}));
+
+describe('User Service', () => {
+  it('should fetch users', async () => {
+    const mockUsers = [
+      { id: 1, name: 'John' },
+      { id: 2, name: 'Jane' }
+    ];
+    
+    db.users.findMany.mockResolvedValue(mockUsers);
+    
+    const users = await fetchUsers();
+    expect(users).toEqual(mockUsers);
+  });
+});
+```
+
+### Testing API Routes
+
+```typescript
+import { createMocks } from 'node-mocks-http';
+import handler from '@/pages/api/users';
+
+describe('Users API', () => {
+  it('should return users', async () => {
+    const { req, res } = createMocks({
+      method: 'GET'
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(JSON.parse(res._getData())).toHaveProperty('users');
+  });
+});
+```
+
+## Coverage Reports
+
+We use Jest's built-in coverage reporting. To generate a coverage report:
+
+```bash
+pnpm test --coverage
+```
+
+This will create a detailed report showing which parts of your code are covered by tests. 
